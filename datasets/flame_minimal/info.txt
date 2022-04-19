@@ -1,0 +1,10 @@
+Dataset: flame_minimal
+Description:
+ - The mesh comprises 6385 nodes, with 12418 edges
+ - The temperature trajectory is of length 200
+ - Node types are 0 (normal node) or 6 (wall node)
+Contents:
+ - cells: (1, 12418, 3), int32
+ - node_type: (1, 6385, 1), int32
+ - mesh_pos: (1, 6385, 2), float32
+ - temperature: (200, 6385, 1), float32
