@@ -14,9 +14,15 @@ def main():
 	# Load dataset
 	ds = dataset.load_dataset(cfg.DATASET_PATH)
 
+	# Pick a single snapshot from the trajectory as input to build the graph for now
+	inputs = {key : value[0] for key, value in ds.items()}
+
 	# Build model
+	is_training = True
 	model = flame_model.Model()
-	model._build_graph(ds)
+	graph = model._build_graph(inputs, is_training)
+
+	print(graph)
 
 if __name__ == "__main__":
 	main()
