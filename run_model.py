@@ -13,7 +13,6 @@ def main():
 
 	# Load dataset
 	ds = dataset.load_dataset(cfg.DATASET_PATH)
-	print(ds)	
 
 	# Build model
 	model = flame_model.Model()

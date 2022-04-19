@@ -27,17 +27,24 @@ class Model():
 		# node_features is concatenation of temperature and node type
 		node_features = jnp.concatenate([inputs['temperature'], node_type], axis = -1) 
 
-		'''
-		TO DO
+		# Calculate the relative mesh positions
+		senders, receivers = common.triangles_to_edges(inputs['cells'][0])
+		relative_mesh_pos = (inputs['mesh_pos'][0, senders] - inputs['mesh_pos'][0, receivers])
+
+		# edge_features is concatenation of relative mesh positions and norm of these
+		edge_features = jnp.concatenate([
+			relative_mesh_pos,
+			jnp.linalg.norm(relative_mesh_pos, axis=-1, keepdims=True)], axis=-1)
+		
+		# Create graph
 		graph = jraph.GraphsTuple(
 			nodes=node_features,
-			edges=edges,
+			edges=edge_features,
 			senders=senders,
 			receivers=receivers,
 			n_node=n_node,
 			n_edge=n_edge,
-			globals=global_context
+			globals=None
 			)
 		return graph
-		'''
 		
