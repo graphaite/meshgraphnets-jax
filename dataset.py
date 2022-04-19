@@ -6,10 +6,10 @@ import numpy as onp
 def load_dataset(path="datasets/flame_minimal/"):
 	"""Load dataset."""
 	data = onp.load(path + "flame_minimal.npz")
-	cells = data["cells"]
-	mesh_pos = data["mesh_pos"]
-	node_type = data["node_type"]
-	temperature = data["temperature"]
+	cells = data['cells']
+	mesh_pos = data['mesh_pos']
+	node_type = data['node_type']
+	temperature = data['temperature']
 
 	ds = {
 		'cells' : jnp.array(cells),
