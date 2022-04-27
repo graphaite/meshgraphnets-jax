@@ -30,7 +30,7 @@ class Model():
 
 		# Calculate the relative mesh positions
 		senders, receivers = common.triangles_to_edges(inputs['cells'])
-		relative_mesh_pos = (inputs['mesh_pos'][senders] - inputs['mesh_pos'][receivers])
+		relative_mesh_pos = inputs['mesh_pos'][senders] - inputs['mesh_pos'][receivers]
 
 		# edge_features is concatenation of relative mesh positions and norm of these
 		edge_features = jnp.concatenate([

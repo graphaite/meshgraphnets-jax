@@ -3,6 +3,7 @@
 from config import get_cfg_defaults
 import dataset
 import flame_model
+import core_model
 
 
 def main():
@@ -22,7 +23,9 @@ def main():
 	model = flame_model.Model()
 	graph = model._build_graph(inputs, is_training)
 
-	print(graph)
+	# Debugging
+	gnb = core_model.GraphNetBlock(cfg)
+	print(gnb)
 
 if __name__ == "__main__":
 	main()

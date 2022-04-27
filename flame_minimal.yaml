@@ -1,1 +1,3 @@
 DATASET_PATH: "datasets/flame_minimal/"
+NUM_LAYERS: 2
+LATENT_SIZE: 128

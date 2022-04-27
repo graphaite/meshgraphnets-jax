@@ -8,5 +8,9 @@ _C.SYSTEM = CN()
 # Path to desired dataset
 _C.DATASET_PATH = ""
 
+# MLP hyperparameters
+_C.NUM_LAYERS = None
+_C.LATENT_SIZE = None
+
 def get_cfg_defaults():
 	return _C.clone()
