@@ -1,5 +1,5 @@
 # meshgraphnets-jax
-JAX implementation of `meshgraphnets` (https://github.com/deepmind/deepmind-research/tree/master/meshgraphnets).
+JAX implementation of `meshgraphnets` (https://github.com/deepmind/deepmind-research/tree/master/meshgraphnets). NB: this is currently work in progress.
 
 ## Setup
 ```
