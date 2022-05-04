@@ -13,7 +13,10 @@ def main():
 	cfg.freeze()
 
 	# Load dataset
-	ds = dataset.load_dataset(cfg.DATASET_PATH)
+	ds = dataset.load_dataset(cfg)
+
+	# Add targets
+	ds = dataset.add_targets(ds, cfg)
 
 	# Pick a single snapshot from the trajectory as input to build the graph for now
 	inputs = {key : value[0] for key, value in ds.items()}

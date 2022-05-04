@@ -8,6 +8,10 @@ _C.SYSTEM = CN()
 # Path to desired dataset
 _C.DATASET_PATH = ""
 
+# Dataset specific parameters
+_C.TARGET_FIELDS = []
+_C.ADD_HISTORY = None
+
 # MLP hyperparameters
 _C.NUM_LAYERS = None
 _C.LATENT_SIZE = None

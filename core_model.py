@@ -42,7 +42,7 @@ class MLP():
 		return outputs
 
 	def predict(self, x):
-		"""Calcalates output from batched inputs."""
+		"""Calculates output from batched inputs."""
 		return self.batched_predict(x)
 
 
@@ -74,7 +74,6 @@ class GraphNetBlock():
 		# Apply edge functions
 		updated_features = self._update_edge_features(graph.nodes, graph.edges, graph.senders, graph.receivers)
 		new_edge_features = graph.edges._replace(features=updated_features)
-		#new_edge_sets.append(edge_set._replace(features=updated_features))
 
 		# Apply node function
 		new_node_features = self._update_node_features(graph.nodes, new_edge_features, graph.receivers)

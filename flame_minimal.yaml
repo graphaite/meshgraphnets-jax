@@ -1,3 +1,5 @@
 DATASET_PATH: "datasets/flame_minimal/"
+TARGET_FIELDS: ["temperature"]
+ADD_HISTORY: 0
 NUM_LAYERS: 2
 LATENT_SIZE: 128

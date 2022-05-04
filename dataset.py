@@ -3,19 +3,30 @@
 import jax.numpy as jnp
 import numpy as onp
 
-def load_dataset(path="datasets/flame_minimal/"):
-	"""Load dataset."""
-	data = onp.load(path + "flame_minimal.npz")
-	cells = data['cells']
-	mesh_pos = data['mesh_pos']
-	node_type = data['node_type']
-	temperature = data['temperature']
 
-	ds = {
-		'cells' : jnp.array(cells),
-		'mesh_pos' : jnp.array(mesh_pos),
-		'node_type' : jnp.array(node_type),
-		'temperature' : jnp.array(temperature)
-	     }
-
+def _parse(ds, cfg):
+	"""Parse raw dataset."""
+	traj_length = ds[cfg.TARGET_FIELDS[0]].shape[0]
+	for key, value in ds.items():
+		if key in cfg.TARGET_FIELDS:
+			continue
+		ds[key] = value.tile([traj_length,1,1])
 	return ds
+
+def load_dataset(cfg):
+	"""Load dataset."""
+	data = onp.load(cfg.DATASET_PATH + "train.npz")
+	ds = {k : jnp.array(v) for k, v in data.items()}
+	ds = _parse(ds, cfg)
+	return ds
+
+def add_targets(ds, cfg):
+	"""Adds target and optionally history fields to dataframe."""
+	ds_out = {}
+	for key, val in ds.items():
+		ds_out[key] = val[1:-1]
+		if key in cfg.TARGET_FIELDS:
+			if cfg.ADD_HISTORY:
+				ds_out['prev|'+key] = val[0:-2]
+			ds_out['target|'+key] = val[2:]
+	return ds_out
