@@ -7,28 +7,30 @@ import core_model
 
 
 def main():
-	# Load configs
-	cfg = get_cfg_defaults()
-	cfg.merge_from_file("flame_minimal.yaml")
-	cfg.freeze()
+    # Load configs
+    cfg = get_cfg_defaults()
+    cfg.merge_from_file("flame_minimal.yaml")
+    cfg.freeze()
 
-	# Load dataset
-	ds = dataset.load_dataset(cfg)
+    # Load dataset
+    ds = dataset.load_dataset(cfg)
 
-	# Add targets
-	ds = dataset.add_targets(ds, cfg)
+    # Add targets
+    ds = dataset.add_targets(ds, cfg)
 
-	# Pick a single snapshot from the trajectory as input to build the graph for now
-	inputs = {key : value[0] for key, value in ds.items()}
+    # Pick a single snapshot from the trajectory as input to build the graph
+    # for now
+    inputs = {key: value[0] for key, value in ds.items()}
 
-	# Build model
-	is_training = True
-	model = flame_model.Model()
-	graph = model._build_graph(inputs, is_training)
+    # Build model
+    is_training = True
+    model = flame_model.Model()
+    graph = model._build_graph(inputs, is_training)
 
-	# Debugging
-	gnb = core_model.GraphNetBlock(cfg)
-	print(gnb)
+    # Debugging
+    gnb = core_model.GraphNetBlock(cfg)
+    print(gnb)
+
 
 if __name__ == "__main__":
-	main()
+    main()

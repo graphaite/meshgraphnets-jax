@@ -16,5 +16,6 @@ _C.ADD_HISTORY = None
 _C.NUM_LAYERS = None
 _C.LATENT_SIZE = None
 
+
 def get_cfg_defaults():
-	return _C.clone()
+    return _C.clone()
